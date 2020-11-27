@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PIM_Web.Model.TransacaoModel>
+
+@{
+    ViewBag.Title = "ConsultaTransacao";
+}
+
+<h2>Consulta Transação</h2>
+
+<p>
+    @Html.ActionLink("Adicionar nova", "AdicionaTransacao")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataTransacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTransacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdMoeda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuantidadeAcoes)
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataTransacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoTransacao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdMoeda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantidadeAcoes)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+                </td>
+            </tr>
+        }
+    }
+
+
+</table>

@@ -1,0 +1,86 @@
+﻿@model PIM_Web.Model.TransacaoModel
+
+@{
+    ViewBag.Title = "Adicionar Transacao";
+}
+
+<h2>Adicionar transação</h2>
+
+<script src="~/Scripts/Transacao.js"></script>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Transacao</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataTransacao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DataTransacao,  new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.DataTransacao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdCliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdCliente, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdCliente, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoTransacao, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+              @*  @Html.EditorFor(model => model.TipoTransacao, new { htmlAttributes = new { @class = "form-control" } })*@
+                <select name="TipoTransacao" id="TipoTransacao">
+                    @foreach (var item in Model.TipoTransacaoModel)
+                    {
+
+                        <option name="@Model.TipoTransacao" value="@item.Id">
+                            @item.Descricao
+                        </option>
+
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdMoeda, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.IdMoeda, new { htmlAttributes = new { @class = "form-control" } })*@
+                <select name="IdMoeda" id="IdMoeda">
+                    @foreach (var item in Model.MoedaModel)
+                    {
+
+                        <option name="@Model.IdMoeda" value="@item.Id">
+                            @item.NomeMoeda
+                        </option>
+
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuantidadeAcoes, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuantidadeAcoes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuantidadeAcoes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Retornar", "Index","Home")
+</div>
